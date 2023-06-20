@@ -1,43 +1,19 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+  <q-layout view="hHh lpr fFf" :style="pageStyle">
+    <q-footer class="opaque-glass" elevated>
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
+        <q-space />
+        <q-tabs shrink class="text-black">
+          <q-route-tab
+            v-for="t in tabs"
+            :key="t.name"
+            :to="'/' + t.name"
+            :icon="t.icon"
+          />
+        </q-tabs>
+        <q-space />
       </q-toolbar>
-    </q-header>
-
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-    >
-      <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
-
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
-    </q-drawer>
+    </q-footer>
 
     <q-page-container>
       <router-view />
@@ -46,57 +22,24 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import EssentialLink, { EssentialLinkProps } from 'components/EssentialLink.vue';
+import { computed } from 'vue';
+import { useDatabase } from 'src/stores/database-store';
+import { backgroundGradient } from 'src/components/palette';
+const db = useDatabase();
 
-const essentialLinks: EssentialLinkProps[] = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
+const tabs = [
+  { name: 'palettes', icon: 'palette' },
+  { name: 'generators', icon: 'api' },
+  { name: 'settings', icon: 'settings' },
 ];
 
-const leftDrawerOpen = ref(false)
-
-function toggleLeftDrawer() {
-  leftDrawerOpen.value = !leftDrawerOpen.value
-}
+const pageStyle = computed(() => {
+  if (db.settings.theme == 'Dark') {
+    return backgroundGradient(['#011827', '#412837']);
+  } else if (db.settings.theme == 'Light' || !db.activePalette) {
+    return backgroundGradient(['#aaccff', '#ffaacc']);
+  } else {
+    return backgroundGradient(db.activePaletteColors);
+  }
+});
 </script>

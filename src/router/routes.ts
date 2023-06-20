@@ -4,7 +4,29 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/IndexPage.vue') }],
+    children: [
+      { path: '', redirect: '/palettes' },
+      {
+        path: 'generators',
+        component: () => import('pages/GeneratorsPage.vue'),
+      },
+      {
+        path: 'generators/edit',
+        component: () => import('pages/GeneratorEditPage.vue'),
+      },
+      {
+        path: 'palettes',
+        component: () => import('pages/PalettesPage.vue'),
+      },
+      {
+        path: 'palettes/edit',
+        component: () => import('pages/PaletteEditPage.vue'),
+      },
+      {
+        path: 'settings',
+        component: () => import('pages/SettingsPage.vue'),
+      },
+    ],
   },
 
   // Always leave this as last one,
