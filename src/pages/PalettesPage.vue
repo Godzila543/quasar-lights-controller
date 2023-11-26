@@ -43,7 +43,7 @@
 <script lang="ts" setup>
 import PaletteCard from 'src/components/PaletteCard.vue';
 import { useDatabase } from 'src/stores/database-store';
-import { backgroundGradient, textColor } from 'src/components/palette';
+import { backgroundGradient, textColor } from 'src/ts/palette';
 import { QSpace } from 'quasar';
 
 const db = useDatabase();

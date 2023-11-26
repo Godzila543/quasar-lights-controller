@@ -7,7 +7,6 @@ import { onMounted } from 'vue';
 import { useDatabase } from './stores/database-store';
 
 const db = useDatabase();
-
 onMounted(() => {
   console.log('App mounted!');
   db.fetchDB();

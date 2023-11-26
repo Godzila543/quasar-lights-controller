@@ -10,7 +10,7 @@
 <script lang="ts" setup>
 import ConfigPage from 'src/components/ConfigPage.vue';
 import { useDatabase } from 'src/stores/database-store';
-import { settingsUI } from 'src/components/settingsUI';
+import { settingsUI } from 'src/ts/settingsUI';
 
 const db = useDatabase();
 </script>

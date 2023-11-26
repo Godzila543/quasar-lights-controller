@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Generator } from 'components/generator';
+import { Generator } from 'src/ts/generator';
 import { useDatabase } from 'src/stores/database-store';
 
 interface Props {

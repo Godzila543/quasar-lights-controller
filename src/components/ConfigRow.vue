@@ -64,7 +64,7 @@
 
 <script setup lang="ts" generic="T extends object">
 import { computed } from 'vue';
-import { configOption, Range } from './configMarkup';
+import { configOption, Range } from 'src/ts/configMarkup';
 
 const props = defineProps<{
   option: configOption<string | number | Range, T>;

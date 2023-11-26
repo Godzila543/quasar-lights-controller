@@ -39,7 +39,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Palette, backgroundGradient, textColor } from 'components/palette';
+import { Palette, backgroundGradient, textColor } from 'src/ts/palette';
 import { useDatabase } from 'src/stores/database-store';
 
 interface Props {

@@ -1,14 +1,16 @@
 import { defineStore } from 'pinia';
-import { Palette } from 'src/components/palette';
-import { Generator } from 'src/components/generator';
-import { Settings } from 'src/components/settingsUI';
+import { Palette } from 'src/ts/palette';
+import { Generator } from 'src/ts/generator';
+import { Settings } from 'src/ts/settingsUI';
 import { useRouter } from 'vue-router';
 import { Notify } from 'quasar';
 
-import db from 'src/stores/supa';
+import db from 'src/ts/supa';
+import { useBluetooth } from './bluetooth';
 
 export const useDatabase = defineStore('database', {
   state: () => ({
+    bt: useBluetooth(),
     router: useRouter(),
     palettes: [] as Palette[],
     activePalette: null as Palette | null,
@@ -190,6 +192,7 @@ export const useDatabase = defineStore('database', {
 
     setActivePalette(palette: Palette) {
       this.activePalette = palette;
+      this.bt.sendPalette(palette);
     },
 
     // GENERATOR SECTION

@@ -33,7 +33,7 @@
 <script lang="ts" setup generic="T extends object">
 import { computed } from 'vue';
 
-import { config } from './configMarkup';
+import { config } from 'src/ts/configMarkup';
 import ConfigRow from './ConfigRow.vue';
 
 const props = defineProps<{

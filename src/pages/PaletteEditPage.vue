@@ -111,7 +111,7 @@
 
 <script lang="ts" setup>
 import { useDatabase } from 'src/stores/database-store';
-import { backgroundGradient, textColor } from 'src/components/palette';
+import { backgroundGradient, textColor } from 'src/ts/palette';
 
 import { computed } from 'vue';
 

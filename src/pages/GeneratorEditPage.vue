@@ -45,7 +45,7 @@
 import { useDatabase } from 'src/stores/database-store';
 import { computed } from 'vue';
 
-import { particleUI, gradientUI } from 'src/components/generator';
+import { particleUI, gradientUI } from 'src/ts/generator';
 
 import ConfigPage from 'src/components/ConfigPage.vue';
 
