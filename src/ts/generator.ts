@@ -25,7 +25,11 @@ export interface Generator {
 
   calculatedAttribute: 'position' | 'velocity' | 'acceleration';
   calculationMethod: 'constant' | 'scaled-over-life' | 'attractor';
-  calculatedAttributeParams: [p1: number, p2: number, p3: number];
+
+  calculatedAttributeValue: number;
+  calculatedAttributeStrength: number;
+  calculatedAttributeRange: Range;
+  calculatedAttributeConstant: number;
 }
 
 import { config, Range } from './configMarkup';
@@ -170,6 +174,38 @@ export const particleUI: config<Generator> = [
         conditionalAttribute: true,
         element: 'select',
         config: ['constant', 'scaled-over-life', 'attractor'],
+      },
+      {
+        label: 'Value',
+        model: 'calculatedAttributeValue',
+        conditionalAttribute: 'calculationMethod',
+        conditionalValue: 'attractor',
+        element: 'slider',
+        config: [-1, 1, 0.01],
+      },
+      {
+        label: 'Strength',
+        model: 'calculatedAttributeStrength',
+        conditionalAttribute: 'calculationMethod',
+        conditionalValue: 'attractor',
+        element: 'slider',
+        config: [-0.1, 0.1, 0.01],
+      },
+      {
+        label: 'Range',
+        model: 'calculatedAttributeRange',
+        conditionalAttribute: 'calculationMethod',
+        conditionalValue: 'scaled-over-life',
+        element: 'range-slider',
+        config: [-5, 5, 0.01],
+      },
+      {
+        label: 'Value',
+        model: 'calculatedAttributeConstant',
+        conditionalAttribute: 'calculationMethod',
+        conditionalValue: 'constant',
+        element: 'slider',
+        config: [-5, 5, 0.01],
       },
     ],
   },

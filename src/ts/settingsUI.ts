@@ -15,7 +15,7 @@ export const settingsUI: config<Settings> = [
         model: 'brightness',
         conditionalAttribute: true,
         element: 'slider',
-        config: [0, 100, 0.1],
+        config: [0, 1, 0.01],
       },
       {
         label: 'Speed',

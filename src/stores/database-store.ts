@@ -47,7 +47,7 @@ export const useDatabase = defineStore('database', {
     freshGenerator: true,
 
     settings: {
-      brightness: 100,
+      brightness: 1,
       speed: 1,
       theme: 'Active Palette',
     } as Settings,
@@ -337,4 +337,6 @@ export const useDatabase = defineStore('database', {
       }
     },
   },
+  // watch settings and send them to the device
+  // watch: {
 });

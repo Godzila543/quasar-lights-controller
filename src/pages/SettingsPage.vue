@@ -11,6 +11,13 @@
 import ConfigPage from 'src/components/ConfigPage.vue';
 import { useDatabase } from 'src/stores/database-store';
 import { settingsUI } from 'src/ts/settingsUI';
+import { watch } from 'vue';
 
 const db = useDatabase();
+watch(
+  () => db.settings.brightness,
+  () => {
+    db.bt.sendBrightness(db.settings.brightness);
+  }
+);
 </script>
