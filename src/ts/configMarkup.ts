@@ -12,13 +12,18 @@ export interface configOption<T, modelInterface> {
   model: TypedKeys<modelInterface, T>;
   conditionalAttribute: keyof modelInterface | true;
   conditionalValue?: string;
-  element: 'slider' | 'select' | 'range-slider' | 'half-range-slider';
+  element:
+    | 'slider'
+    | 'select'
+    | 'range-slider'
+    | 'half-range-slider'
+    | 'button';
   config: T[];
 }
 
 export interface configCategory<modelInterface> {
   label: string;
-  options: configOption<string | number | Range, modelInterface>[];
+  options: configOption<string | number | (() => void), modelInterface>[];
 }
 
 export type config<modelInterface> = configCategory<modelInterface>[];

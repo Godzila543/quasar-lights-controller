@@ -28,7 +28,12 @@
     <q-page-sticky position="bottom" :offset="[18, 44]">
       <q-fab
         class="our-fab"
-        :style="backgroundGradient(db.activePalette?.colors)"
+        :style="[
+          {
+            background: db.activePalette?.colors[0],
+            color: textColor(db.activePalette?.colors, 0),
+          },
+        ]"
         icon="add"
         direction="up"
       >

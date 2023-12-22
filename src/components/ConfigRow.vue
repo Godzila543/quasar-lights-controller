@@ -6,7 +6,11 @@
       model[option.conditionalAttribute] === option.conditionalValue
     "
   >
-    <q-intersection transition="slide-right" style="height: 38px">
+    <q-intersection
+      transition="slide-right"
+      style="height: 38px"
+      v-if="!(option.element == 'button')"
+    >
       <q-card class="ui-card shadow-4 q-mr-md">
         <q-card-section class="text-subtitle2 q-py-sm">
           {{ option.label }}
@@ -35,6 +39,8 @@
             :max="(option as configOption<number, T>).config[1]"
             :step="(option as configOption<number, T>).config[2]"
             color="white"
+            label
+            label-text-color="black"
           />
           <q-slider
             v-if="option.element == 'half-range-slider'"
@@ -44,6 +50,8 @@
             :max="(option as configOption<number, T>).config[1]"
             :step="(option as configOption<number, T>).config[2]"
             color="white"
+            label
+            label-text-color="black"
           />
           <q-select
             v-if="option.element == 'select'"
@@ -56,6 +64,14 @@
             color="white"
             style="margin-top: -10px; margin-bottom: -10px"
           />
+          <q-btn
+            v-if="option.element == 'button'"
+            dense
+            flat
+            style="margin-top: -10px; margin-bottom: -10px; width: 100%"
+            :label="option.label"
+            @click="model[(option as configOption<() => void, T>).model]"
+          ></q-btn>
         </q-card-section>
       </q-card>
     </q-intersection>
@@ -67,7 +83,7 @@ import { computed } from 'vue';
 import { configOption, Range } from 'src/ts/configMarkup';
 
 const props = defineProps<{
-  option: configOption<string | number | Range, T>;
+  option: configOption<string | number | (() => void) | Range, T>;
   configObject: T;
 }>();
 

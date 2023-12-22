@@ -36,6 +36,13 @@ export const settingsUI: config<Settings> = [
         element: 'select',
         config: ['Active Palette', 'Light', 'Dark'],
       },
+      {
+        label: 'Connect to Lights',
+        model: 'openDialog',
+        conditionalAttribute: true,
+        element: 'button',
+        config: [],
+      },
     ],
   },
 ];

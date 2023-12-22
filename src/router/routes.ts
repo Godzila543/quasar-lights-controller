@@ -26,6 +26,10 @@ const routes: RouteRecordRaw[] = [
         path: 'settings',
         component: () => import('pages/SettingsPage.vue'),
       },
+      {
+        path: 'testdrag',
+        component: () => import('pages/TestDrag.vue'),
+      },
     ],
   },
 

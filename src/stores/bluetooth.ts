@@ -17,6 +17,9 @@ const convertToRGB = function (hexString: string) {
 
   hexString = hexString.substring(1);
   const aRgbHex = hexString.match(/.{1,2}/g);
+  if (!aRgbHex) {
+    throw 'Invalid hex color.';
+  }
   const aRgb = [
     parseInt(aRgbHex[0], 16),
     parseInt(aRgbHex[1], 16),
@@ -41,13 +44,13 @@ export const useBluetooth = defineStore('bluetooth', {
       device: {} as BluetoothDevice | undefined,
       server: {} as BluetoothRemoteGATTServer | undefined,
       service: {} as BluetoothRemoteGATTService | undefined,
-      generatorCharicteristic: {} as
+      generatorCharicteristic: undefined as
         | BluetoothRemoteGATTCharacteristic
         | undefined,
-      paletteCharicteristic: {} as
+      paletteCharicteristic: undefined as
         | BluetoothRemoteGATTCharacteristic
         | undefined,
-      brightnessCharicteristic: {} as
+      brightnessCharicteristic: undefined as
         | BluetoothRemoteGATTCharacteristic
         | undefined,
     },
@@ -139,7 +142,7 @@ export const useBluetooth = defineStore('bluetooth', {
     },
 
     sendBrightness(brightness: number) {
-      if (this.BLE.brightnessCharicteristic) {
+      if (this.BLE.brightnessCharicteristic && this.connected) {
         const promise =
           this.BLE.brightnessCharicteristic.writeValueWithResponse(
             enc.encode('{brightness: ' + brightness + '}')
@@ -171,7 +174,7 @@ export const useBluetooth = defineStore('bluetooth', {
     },
 
     sendPalette(palette: Palette) {
-      if (this.BLE.paletteCharicteristic) {
+      if (this.BLE.paletteCharicteristic && this.connected) {
         const preparedPalette = {
           length: palette.colors.length,
           colors: palette.colors.map(convertToRGB),
@@ -182,7 +185,7 @@ export const useBluetooth = defineStore('bluetooth', {
       } else {
         console.error('No device connected: Couldnt send Palette');
         Notify.create({
-          message: 'No palette connection: Couldnt send Palette',
+          message: 'No connection: Couldnt send Palette',
           color: 'red',
           position: 'top',
         });
@@ -270,7 +273,7 @@ export const useBluetooth = defineStore('bluetooth', {
         switch (generator.calculationMethod) {
           case 'constant':
             pp.attributeMethod = 0;
-            pp.aValue1 = generator.calculatedAttributeConstant;
+            pp.aValue1 = generator.calculatedAttributeValue;
             break;
           case 'scaled-over-life':
             pp.attributeMethod = 1;
@@ -284,7 +287,7 @@ export const useBluetooth = defineStore('bluetooth', {
         }
       }
       console.log(JSON.stringify(pp));
-      if (this.BLE.generatorCharicteristic) {
+      if (this.BLE.generatorCharicteristic && this.connected) {
         this.BLE.generatorCharicteristic.writeValueWithResponse(
           enc.encode(JSON.stringify(pp))
         );

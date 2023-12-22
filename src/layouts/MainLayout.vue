@@ -21,7 +21,7 @@
     <q-dialog v-model="db.bt.dialog">
       <q-card class="opaque-glass">
         <q-card-section class="text-h6"
-          >Connect to a Bluetooth Device</q-card-section
+          >Connect to the LED Device</q-card-section
         >
         <q-card-section>
           <div class="row">

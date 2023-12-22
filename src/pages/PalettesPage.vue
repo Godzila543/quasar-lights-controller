@@ -29,7 +29,12 @@
 
     <q-page-sticky position="bottom" :offset="[18, 40]">
       <q-btn
-        :style="backgroundGradient(db.activePalette?.colors)"
+        :style="[
+          {
+            background: db.activePalette?.colors[0],
+            color: textColor(db.activePalette?.colors, 0),
+          },
+        ]"
         size="25px"
         round
         class="shadow-10"

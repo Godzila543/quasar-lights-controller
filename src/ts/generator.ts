@@ -29,7 +29,6 @@ export interface Generator {
   calculatedAttributeValue: number;
   calculatedAttributeStrength: number;
   calculatedAttributeRange: Range;
-  calculatedAttributeConstant: number;
 }
 
 import { config, Range } from './configMarkup';
@@ -201,7 +200,7 @@ export const particleUI: config<Generator> = [
       },
       {
         label: 'Value',
-        model: 'calculatedAttributeConstant',
+        model: 'calculatedAttributeValue',
         conditionalAttribute: 'calculationMethod',
         conditionalValue: 'constant',
         element: 'slider',

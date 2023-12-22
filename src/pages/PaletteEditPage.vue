@@ -40,72 +40,87 @@
       </q-toolbar-title>
     </q-toolbar>
   </q-header>
-  <q-page padding>
-    <div class="row" v-for="(color, i) in db.editedPalette.colors" :key="i">
-      <div class="col">
-        <q-color
-          v-model="db.editedPalette.colors[i]"
-          no-header
-          no-footer
-          class="q-mb-md"
-        />
-      </div>
+  <q-page
+    padding
+    :style="backgroundGradient(['#011827', '#412837'])"
+    class="row"
+  >
+    <q-card class="q-ma-sm overflow-hidden col-grow raised-light-glass">
+      <q-scroll-area class="fit q-pa-md">
+        <q-card
+          style="background-color: rgb(0, 0, 0, 0.2)"
+          class="q-pa-md inset-shadow q-mb-md"
+          v-for="(color, i) in db.editedPalette.colors"
+          :key="i"
+        >
+          <div class="row">
+            <div class="col">
+              <q-color
+                v-model="db.editedPalette.colors[i]"
+                no-header
+                no-footer
+                class="q-mb-md"
+              />
+            </div>
 
-      <div class="col-2 justify-between">
-        <div class="row flex-center q-my-sm">
-          <q-btn
-            outline
-            round
-            size="sm"
-            icon="arrow_upward"
-            :style="{ color: color }"
-            v-if="i > 0"
-            @click="
-              db.editedPalette.colors.splice(
-                i - 1,
-                0,
-                db.editedPalette.colors.splice(i, 1)[0]
-              )
-            "
-          />
-          <div style="height: 30px" v-else />
-        </div>
-        <div class="row flex-center q-mb-sm">
-          <q-btn
-            flat
-            icon="delete"
-            color="negative"
-            @click="db.editedPalette.colors.splice(i, 1)"
-          />
-        </div>
+            <div class="col-2 justify-between">
+              <div class="row flex-center q-my-sm">
+                <q-btn
+                  outline
+                  round
+                  size="sm"
+                  icon="arrow_upward"
+                  :style="{ color: color }"
+                  v-if="i > 0"
+                  @click="
+                    db.editedPalette.colors.splice(
+                      i - 1,
+                      0,
+                      db.editedPalette.colors.splice(i, 1)[0]
+                    )
+                  "
+                />
+                <div style="height: 30px" v-else />
+              </div>
+              <div class="row flex-center q-mb-sm">
+                <q-btn
+                  flat
+                  icon="delete"
+                  color="negative"
+                  @click="db.editedPalette.colors.splice(i, 1)"
+                />
+              </div>
 
+              <div class="row flex-center">
+                <q-btn
+                  round
+                  outline
+                  size="sm"
+                  icon="arrow_downward"
+                  :style="{ color: color }"
+                  v-if="i < db.editedPalette.colors.length - 1"
+                  @click="
+                    db.editedPalette.colors.splice(
+                      i + 1,
+                      0,
+                      db.editedPalette.colors.splice(i, 1)[0]
+                    )
+                  "
+                />
+              </div>
+            </div>
+          </div>
+        </q-card>
         <div class="row flex-center">
           <q-btn
-            round
-            outline
-            size="sm"
-            icon="arrow_downward"
-            :style="{ color: color }"
-            v-if="i < db.editedPalette.colors.length - 1"
-            @click="
-              db.editedPalette.colors.splice(
-                i + 1,
-                0,
-                db.editedPalette.colors.splice(i, 1)[0]
-              )
-            "
+            fab
+            icon="add"
+            :style="backgroundGradient(db.editedPalette.colors)"
+            @click="db.editedPalette.colors.push('#00aaff')"
           />
         </div>
-      </div>
-    </div>
-    <div class="row flex-center">
-      <q-btn
-        fab
-        icon="add"
-        :style="backgroundGradient(db.editedPalette.colors)"
-        @click="db.editedPalette.colors.push('#00aaff')"
-      />
-    </div>
+      </q-scroll-area>
+    </q-card>
   </q-page>
 </template>
 
