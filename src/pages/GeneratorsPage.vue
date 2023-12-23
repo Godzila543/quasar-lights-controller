@@ -1,14 +1,17 @@
 <template>
-  <q-header elevated class="opaque-glass">
-    <q-toolbar>
-      <q-toolbar-title class="text-black">Generators</q-toolbar-title>
+  <q-header style="background: #00000000">
+    <div
+      class="text-h5 q-mx-md q-mt-md q-pa-md q-pl-lg opaque-glass row shadow-4"
+      style="border-radius: 30px"
+    >
+      <div>Generators</div>
       <q-space />
-      <q-toolbar-title
+      <span
         class="text-overline text-right"
         :style="{ color: textColor(db.activePalette?.colors, -1) }"
-        >{{ db.activeGenerator?.name }}</q-toolbar-title
+        >{{ db.activeGenerator?.name }}</span
       >
-    </q-toolbar>
+    </div>
   </q-header>
   <q-page padding class="row">
     <q-card
@@ -29,7 +32,7 @@
       </q-card>
     </q-card>
 
-    <q-page-sticky position="bottom" :offset="[18, 44]">
+    <q-page-sticky position="bottom" :offset="[18, 50]">
       <q-fab class="opaque-glass" icon="add" direction="up">
         <q-fab-action
           icon="gradient"

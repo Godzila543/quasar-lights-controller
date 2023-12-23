@@ -1,16 +1,18 @@
 <template>
-  <q-page padding class="row">
-    <q-card
-      class="q-ma-sm overflow-hidden col-grow raised-light-glass"
-      style="border-radius: 45px"
-    >
-      <q-scroll-area class="fit q-px-md">
-        <div>
+  <q-card
+    class="q-ma-sm overflow-hidden col-grow raised-light-glass"
+    style="border-radius: 45px"
+  >
+    <q-scroll-area class="fit">
+      <div class="row">
+        <div
+          class="col-12 col-md-6"
+          v-for="(category, i) in configDef"
+          :key="i"
+        >
           <q-card
-            v-for="(category, i) in configDef"
-            :key="i"
             style="background-color: rgb(0, 0, 0, 0.2); border-radius: 30px"
-            class="q-pa-md inset-shadow q-my-md"
+            class="q-pa-md inset-shadow q-ma-md col-6"
           >
             <!-- <q-intersection transition="slide-right" style="height: 38px"> -->
             <div
@@ -25,9 +27,9 @@
             </div>
           </q-card>
         </div>
-      </q-scroll-area>
-    </q-card>
-  </q-page>
+      </div>
+    </q-scroll-area>
+  </q-card>
 </template>
 
 <script lang="ts" setup generic="T extends object">

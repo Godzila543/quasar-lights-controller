@@ -1,7 +1,7 @@
 <template>
   <q-card
     v-ripple
-    class="relative-position"
+    class=""
     :class="
       props.palette === db.activePalette
         ? 'q-my-md inset-shadow'

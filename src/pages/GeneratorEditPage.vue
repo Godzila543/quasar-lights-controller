@@ -1,11 +1,10 @@
 <template>
-  <q-header class="opaque-glass" elevated>
-    <q-toolbar class="q-px-none">
-      <!-- <q-toolbar class="bg-black"> -->
-      <q-toolbar-title>
+  <q-page padding class="row justify-center">
+    <div class="column col-grow" style="max-width: 900px">
+      <div class="col-12" style="border-radius: 45px; height: min-content">
         <div class="row full-height">
           <q-input
-            class="q-ml-md q-pl-md q-mr-md text-black col-grow q-my-sm button-glass shadow-3"
+            class="q-ml-sm q-pl-md q-mr-md text-black col-grow q-my-sm opaque-glass shadow-3"
             style="border-radius: 30px"
             v-model="db.editedGenerator.name"
             label="Generator Name"
@@ -14,7 +13,7 @@
             :dark="false"
           />
           <q-btn
-            class="q-mr-sm q-my-sm button-glass"
+            class="q-mr-sm q-my-sm opaque-glass"
             :class="db.editedGenerator.name.length < 1 ? '' : 'shadow-3'"
             icon="save"
             round
@@ -26,7 +25,7 @@
             style="transition: 0.25s ease-in-out"
           />
           <q-btn
-            class="q-mr-md q-my-sm button-glass shadow-3"
+            class="q-mr-sm q-my-sm opaque-glass shadow-3"
             icon="delete"
             round
             flat
@@ -35,10 +34,13 @@
             @click="db.deleteGenerator(db.editedGenerator.name)"
           />
         </div>
-      </q-toolbar-title>
-    </q-toolbar>
-  </q-header>
-  <ConfigPage :config-def="uiDefinition" :model-object="db.editedGenerator" />
+      </div>
+      <ConfigPage
+        :config-def="uiDefinition"
+        :model-object="db.editedGenerator"
+      />
+    </div>
+  </q-page>
 </template>
 
 <script lang="ts" setup>

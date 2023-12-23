@@ -1,10 +1,17 @@
 <template>
-  <q-header class="opaque-glass" elevated>
-    <q-toolbar>
-      <q-toolbar-title class="text-black"> Settings </q-toolbar-title>
-    </q-toolbar>
-  </q-header>
-  <ConfigPage :config-def="settingsUI" :model-object="db.settings" />
+  <q-page padding class="row justify-center">
+    <div class="column col-grow" style="max-width: 900px">
+      <q-card
+        class="q-ma-sm opaque-glass col-12"
+        style="border-radius: 45px; height: min-content"
+      >
+        <div class="text-h5 q-pa-md q-pl-lg" style="border-radius: 30px">
+          Settings
+        </div>
+      </q-card>
+      <ConfigPage :config-def="settingsUI" :model-object="db.settings" />
+    </div>
+  </q-page>
 </template>
 
 <script lang="ts" setup>
