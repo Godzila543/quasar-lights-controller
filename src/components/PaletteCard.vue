@@ -4,7 +4,7 @@
     class="relative-position"
     :class="
       props.palette === db.activePalette
-        ? 'q-my-lg shadow-10'
+        ? 'q-my-md inset-shadow'
         : 'q-my-sm shadow-2'
     "
     :style="[

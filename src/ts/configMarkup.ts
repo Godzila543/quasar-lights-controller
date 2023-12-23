@@ -23,7 +23,10 @@ export interface configOption<T, modelInterface> {
 
 export interface configCategory<modelInterface> {
   label: string;
-  options: configOption<string | number | (() => void), modelInterface>[];
+  options: configOption<
+    string | number | Range | (() => void),
+    modelInterface
+  >[];
 }
 
 export type config<modelInterface> = configCategory<modelInterface>[];

@@ -11,8 +11,12 @@
     </q-toolbar>
   </q-header>
   <q-page padding class="row">
-    <q-card class="raised-light-glass row-grow col-grow q-ma-sm row">
+    <q-card
+      style="border-radius: 45px"
+      class="raised-light-glass row-grow col-grow q-ma-sm row"
+    >
       <q-card
+        style="border-radius: 30px"
         class="q-ma-md overflow-hidden col-grow inset-shadow inset-dark-glass"
       >
         <q-scroll-area class="fit q-py-md" bar-style="display: none">
@@ -29,15 +33,9 @@
 
     <q-page-sticky position="bottom" :offset="[18, 40]">
       <q-btn
-        :style="[
-          {
-            background: db.activePalette?.colors[0],
-            color: textColor(db.activePalette?.colors, 0),
-          },
-        ]"
         size="25px"
         round
-        class="shadow-10"
+        class="shadow-10 opaque-glass"
         icon="add"
         @click="db.newPalette"
       />

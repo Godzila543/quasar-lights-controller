@@ -1,25 +1,25 @@
 <template>
   <q-page padding class="row">
-    <q-card class="q-ma-sm overflow-hidden col-grow raised-light-glass">
-      <q-scroll-area class="fit q-pa-md">
+    <q-card
+      class="q-ma-sm overflow-hidden col-grow raised-light-glass"
+      style="border-radius: 45px"
+    >
+      <q-scroll-area class="fit q-px-md">
         <div>
           <q-card
             v-for="(category, i) in configDef"
             :key="i"
-            style="background-color: rgb(0, 0, 0, 0.2)"
-            class="q-pa-md inset-shadow q-mb-md"
+            style="background-color: rgb(0, 0, 0, 0.2); border-radius: 30px"
+            class="q-pa-md inset-shadow q-my-md"
           >
-            <q-intersection transition="slide-right" style="height: 38px">
-              <div
-                class="text-h6 shadow-2 q-pl-md"
-                style="
-                  background-color: rgb(0, 0, 0, 0.16);
-                  border-radius: 20px;
-                "
-              >
-                {{ category.label }}
-              </div>
-            </q-intersection>
+            <!-- <q-intersection transition="slide-right" style="height: 38px"> -->
+            <div
+              class="text-h6 shadow-2 q-pl-md"
+              style="background-color: rgb(0, 0, 0, 0.16); border-radius: 20px"
+            >
+              {{ category.label }}
+            </div>
+            <!-- </q-intersection> -->
             <div v-for="(option, j) in category.options" :key="j">
               <ConfigRow :option="option" :config-object="model" />
             </div>

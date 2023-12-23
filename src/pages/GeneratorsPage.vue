@@ -11,8 +11,12 @@
     </q-toolbar>
   </q-header>
   <q-page padding class="row">
-    <q-card class="raised-light-glass row-grow col-grow q-ma-sm row">
+    <q-card
+      style="border-radius: 45px"
+      class="raised-light-glass row-grow col-grow q-ma-sm row"
+    >
       <q-card
+        style="border-radius: 30px"
         class="q-ma-md overflow-hidden col-grow inset-shadow inset-dark-glass"
       >
         <q-scroll-area class="fit q-py-md" bar-style="display: none">
@@ -26,17 +30,7 @@
     </q-card>
 
     <q-page-sticky position="bottom" :offset="[18, 44]">
-      <q-fab
-        class="our-fab"
-        :style="[
-          {
-            background: db.activePalette?.colors[0],
-            color: textColor(db.activePalette?.colors, 0),
-          },
-        ]"
-        icon="add"
-        direction="up"
-      >
+      <q-fab class="opaque-glass" icon="add" direction="up">
         <q-fab-action
           icon="gradient"
           label="Gradient"
@@ -55,7 +49,7 @@
 <script lang="ts" setup>
 import GeneratorCard from 'src/components/GeneratorCard.vue';
 import { useDatabase } from 'src/stores/database-store';
-import { backgroundGradient, textColor } from 'src/ts/palette';
+import { textColor } from 'src/ts/palette';
 import { QSpace } from 'quasar';
 
 const db = useDatabase();
