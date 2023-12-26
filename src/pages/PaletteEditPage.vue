@@ -69,8 +69,7 @@
                   <q-color
                     v-model="db.editedPalette.colors[i]"
                     no-header
-                    class="q-mb-md"
-                    style="width: 200px"
+                    style="width: 300px; border-radius: 30px"
                   />
                 </q-popup-proxy>
               </q-btn>
@@ -106,17 +105,5 @@
 import { useDatabase } from 'src/stores/database-store';
 import { backgroundGradient, textColor } from 'src/ts/palette';
 
-import { computed } from 'vue';
-
-const headerColor = computed(() => {
-  return textColor(db.editedPalette.colors, 0);
-});
-
 const db = useDatabase();
 </script>
-
-<style scoped lang="scss">
-:deep(.q-color-picker__spectrum) {
-  height: 90px;
-}
-</style>
