@@ -1,9 +1,5 @@
 <template>
-  <q-page
-    padding
-    class="row justify-center"
-    :style="backgroundGradient(db.editedPalette.colors)"
-  >
+  <q-page padding class="row justify-center">
     <div class="column col-grow" style="max-width: 900px">
       <div class="col-12" style="border-radius: 45px; height: min-content">
         <div class="row full-height">
