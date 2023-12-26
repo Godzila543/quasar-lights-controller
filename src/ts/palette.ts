@@ -1,4 +1,8 @@
 import { colors } from 'quasar';
+import { useDatabase } from 'src/stores/database-store';
+
+const db = useDatabase();
+
 function mod(n: number, m: number) {
   return ((n % m) + m) % m;
 }
@@ -22,8 +26,18 @@ export function backgroundGradient(colors: string[] | undefined): string {
 export function textColor(
   colors: string[] | undefined,
   index: number,
-  defaultColor = 'white'
+  defaultColor = 'black'
 ): string {
+  if (!colors) {
+    if (db.settings.theme === 'Dark') {
+      return 'white';
+    } else if (db.settings.theme === 'Light') {
+      return 'black';
+    }
+  }
+  if (!colors || colors.length === 0) {
+    colors = db.activePalette?.colors;
+  }
   if (!colors || colors.length === 0) {
     return defaultColor;
   }

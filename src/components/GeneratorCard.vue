@@ -1,7 +1,6 @@
 <template>
   <q-card
     v-ripple
-    class="relative-position q-mx-md"
     :class="
       props.generator === db.activeGenerator
         ? 'q-my-md inset-shadow inset-dark-glass'

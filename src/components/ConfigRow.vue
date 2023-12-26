@@ -1,6 +1,7 @@
 <template>
   <div
     class="row q-mt-md"
+    :style="textColor(undefined, -1)"
     v-if="
       option.conditionalAttribute === true ||
       model[option.conditionalAttribute] === option.conditionalValue
@@ -15,8 +16,6 @@
         {{ option.label }}
       </q-card-section>
     </q-card>
-    <!-- </q-intersection> -->
-    <!-- <q-intersection transition="slide-left" class="col-grow"> -->
     <q-card class="ui-card shadow-4 col-grow">
       <q-card-section class="q-py-sm">
         <q-slider
@@ -27,7 +26,7 @@
           :max="(option as configOption<number, T>).config[1]"
           :step="(option as configOption<number, T>).config[2]"
           color="white"
-          label
+          label-color="white"
           label-text-color="black"
         />
         <q-range
@@ -80,6 +79,7 @@
 <script setup lang="ts" generic="T extends object">
 import { computed } from 'vue';
 import { configOption, Range } from 'src/ts/configMarkup';
+import { textColor } from 'src/ts/palette';
 
 const props = defineProps<{
   option: configOption<string | number | (() => void) | Range, T>;

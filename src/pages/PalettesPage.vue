@@ -1,16 +1,13 @@
 <template>
   <q-header style="background: #00000000">
     <div
-      class="text-h5 q-mx-md q-mt-md q-pa-md q-pl-lg opaque-glass row shadow-4"
-      style="border-radius: 30px"
+      class="text-h5 q-mx-lg q-mt-md q-pa-md q-pl-lg opaque-glass row shadow-4"
+      style="border-radius: 45px"
+      :style="{ color: textColor(undefined, -1) }"
     >
       <div>Palettes</div>
       <q-space />
-      <span
-        class="text-overline text-right"
-        :style="{ color: textColor(db.activePalette?.colors, -1) }"
-        >{{ db.activePalette?.name }}</span
-      >
+      <span class="text-h6 text-right">{{ db.activePalette?.name }}</span>
     </div>
   </q-header>
 
@@ -53,7 +50,7 @@
 <script lang="ts" setup>
 import PaletteCard from 'src/components/PaletteCard.vue';
 import { useDatabase } from 'src/stores/database-store';
-import { backgroundGradient, textColor } from 'src/ts/palette';
+import { textColor } from 'src/ts/palette';
 import { QSpace } from 'quasar';
 
 const db = useDatabase();

@@ -9,11 +9,11 @@
         <div class="row full-height">
           <q-input
             class="q-ml-sm q-pl-md q-mr-md text-black col-grow q-my-sm opaque-glass shadow-3"
+            :style="{ color: textColor(db.activePalette?.colors, -1) }"
             style="border-radius: 30px"
             v-model="db.editedPalette.name"
             label="Palette Name"
             borderless
-            color="black"
             :dark="false"
           />
           <q-btn
